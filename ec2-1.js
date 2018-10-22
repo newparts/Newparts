@@ -1,48 +1,47 @@
-document.getElementById("id_logic_version").innerHTML = "Logic version: 2018.10.15.1";
-
-
-function citeste()
+document.getElementById("id_logic_version").innerHTML = "Logic version: 2018.10.22.0";
+document.getElementById("id_button").addEventListener("click", rezolva);
+ //------------------------------
+function t_ec2()
 {
-	var a = document.getElementById("id_a").value;
-	var b = document.getElementById("id_b").value;
-	var c = document.getElementById("id_c").value;
-	
-	var coeficienti = {a:a, b:b, c:c};
-	return coeficienti;
-}
-//------------------------------
-function calculeaza(coeficienti)
-{
-	var delta = coeficienti.b * coeficienti.b - 4 * coeficienti.a * coeficienti.c;
-	
-	var x1_re, x2_re, x1_im, x2_im;
-	if (delta >= 0){
-		x1_re = (-coeficienti.b - Math.sqrt(delta)) / (2 * coeficienti.a);
-		x2_re = (-coeficienti.b + Math.sqrt(delta)) / (2 * coeficienti.a);
-		x1_im = x2_im = 0;
+	this.citeste = function()
+	{
+		this.a = document.getElementById("id_a").value;
+		this.b = document.getElementById("id_b").value;
+		this.c = document.getElementById("id_c").value;
 	}
-	else{
-		x1_re = -coeficienti.b / (2 * coeficienti.a);
-		x1_im = -Math.sqrt(-delta) / (2 * coeficienti.a);
-		x2_re = -coeficienti.b / (2 * coeficienti.a);
-		x2_im = Math.sqrt(-delta) / (2 * coeficienti.a);
+	//------------------------------
+	this.calculeaza = function()
+	{
+		var delta = this.b * this.b - 4 * this.a * this.c;
+		
+		var x1_re, x2_re, x1_im, x2_im;
+		if (delta >= 0){
+			x1_re = (-this.b - Math.sqrt(delta)) / (2 * this.a);
+			x2_re = (-this.b + Math.sqrt(delta)) / (2 * this.a);
+			x1_im = x2_im = 0;
+		}
+		else{
+			x1_re = -this.b / (2 * this.a);
+			x1_im = -Math.sqrt(-delta) / (2 * this.a);
+			x2_re = -this.b / (2 * this.a);
+			x2_im = Math.sqrt(-delta) / (2 * this.a);
+		}
+		this.x1 = {re:x1_re, im: x1_im};
+		this.x2 = {re:x2_re, im: x2_im};
 	}
-	var x1 = {re:x1_re, im: x1_im};
-	var x2 = {re:x2_re, im: x2_im};
-	var solutii = {x1: x1, x2:x2};
-	return solutii;
-}
-//------------------------------
-function afiseaza(solutii)
-{
-	document.getElementById("id_x1").innerHTML = solutii.x1.re + " + " + solutii.x1.im + "i";
-	document.getElementById("id_x2").innerHTML = solutii.x2.re + " + " + solutii.x2.im + "i";
+	//------------------------------
+	this.afiseaza = function ()
+	{
+		document.getElementById("id_x1").innerHTML = this.x1.re + " + " + this.x1.im + "i";
+		document.getElementById("id_x2").innerHTML = this.x2.re + " + " + this.x2.im + "i";
+	}
 }
 //------------------------------
 function rezolva()
 {
-	var coeficienti = citeste();
-	var solutii = calculeaza(coeficienti);
-	afiseaza(solutii);
+	var ec2 = new t_ec2();
+	
+	ec2.citeste();
+	ec2.calculeaza();
+	ec2.afiseaza();
 }
-//------------------------------
