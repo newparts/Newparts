@@ -1,13 +1,18 @@
-function us_prim(n)
-{
-    for (var i = 2 ; i * i <= n; i++)
-        if (n % i == 0 )
-        return false;
+onmessage = function(e){
+    if (e.data=="stop"){
+
+    }
 }
+function is_prime(n)
+{
+	for (var i = 2; i * i <= n; i++)
+		if (n % i == 0)
+			return false;
+	return true;
+}
+//-------------------------------
+for (var i = 1e9; i < 1e10; i++)
+	if (is_prim(i))
+		postMessage(i);
 
-for (var i = le9; i < le10; i++   )
-if (is_prim(i))
-
-postMessage(i) ;
-
-postMessage("gata");
+postMessage("done");
