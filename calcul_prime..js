@@ -3,7 +3,7 @@ onmessage = function(e){
 
     }
 }
-function is_prime(n)
+function is_prim(n)
 {
 	for (var i = 2; i * i <= n; i++)
 		if (n % i == 0)
@@ -15,4 +15,4 @@ for (var i = 1e9; i < 1e10; i++)
 	if (is_prim(i))
 		postMessage(i);
 
-postMessage("done");
+postMessage("gata");
