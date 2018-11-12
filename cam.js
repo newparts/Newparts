@@ -11,7 +11,7 @@ function on_success(e)
 //------------------------------
 function on_failure(e)
 {
-	alert("Eroare conectare");
+	alert("Cannot read camera");
 }
 //------------------------------
 function start()
