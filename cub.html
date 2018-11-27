@@ -7,15 +7,23 @@
  #vizual {
   -webkit-perspective: 800px;
   -webkit-perspective-origin: 50% 200px;
+  -moz-perspective: 800px;
+  -moz-perspective-origin: 50% 200px;
+  perspective: 800px;
+  perspective-origin: 50% 200px;
 }
 
 #cub {
   position: relative;
-  margin: 0 auto;
+  margin: 100px auto;
   height: 400px;
   width: 400px;
   -webkit-transition: -webkit-transform 2s linear;
   -webkit-transform-style: preserve-3d;
+  -moz-transition: -moz-transform 2s linear;
+  -moz-transform-style: preserve-3d;
+  transition: transform 2s linear;
+  transform-style: preserve-3d;
 }
 
 .fata {
@@ -24,30 +32,47 @@
   width: 360px;
   padding: 20px;
   background-color: rgba(50, 50, 50, 0.7);
+  font-size: 27px;
+  line-height: 1em;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 3px;
 }
 
 #cub .unu  {
   -webkit-transform: rotateX(90deg) translateZ(200px);
+  -moz-transform: rotateX(90deg) translateZ(200px);
+  transform: rotateX(90deg) translateZ(200px);
 }
 
 #cub .doi {
   -webkit-transform: translateZ(200px);
+  -moz-transform: translateZ(200px);
+  transform: translateZ(200px);
 }
 
-#cube .trei {
+#cub .trei {
   -webkit-transform: rotateY(90deg) translateZ(200px);
+  -moz-transform: rotateY(90deg) translateZ(200px);
+  transform: rotateY(90deg) translateZ(200px);
 }
 
-#cube .patru {
+#cub .patru {
   -webkit-transform: rotateY(180deg) translateZ(200px);
+  -moz-transform: rotateY(180deg) translateZ(200px);
+  transform: rotateY(180deg) translateZ(200px);
 }
 
-#cube .cinci {
+#cub .cinci {
   -webkit-transform: rotateY(-90deg) translateZ(200px);
+  -moz-transform: rotateY(-90deg) translateZ(200px);
+  transform: rotateY(-90deg) translateZ(200px);
 }
 
-#cube .sase {
-  -webkit-transform: rotateX(-90deg) translateZ(200px) rotate(180deg);
+#cub .sase {
+  -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
+  -moz-transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
+  transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
 }
  </style> 
 </head> 
@@ -78,29 +103,40 @@
       </div>
 
       <script>
-      var xAngle = 0, yAngle = 0;
-  document.addEventListener('keydown', function(e) {
-  switch(e.keyCode) {
+      var props = 'transform WebkitTransform MozTransform OTransform msTransform'.split(' '),
+    prop,
+    el = document.createElement('div');
 
-    case 1: 
-      yAngle -= 90;
-      break;
+for(var i = 0, l = props.length; i < l; i++) {
+    if(typeof el.style[props[i]] !== "undefined") {
+        prop = props[i];
+        break;
+    }
+}
 
-    case 2: 
-      xAngle += 90;
-      break;
+var xAngle = 0, yAngle = 0;
+$('body').keydown(function(evt) {
+    switch(evt.keyCode) {
+        case 37: // left
+            yAngle -= 90;
+            break;
 
-    case 3: 
-      yAngle += 90;
-      break;
+        case 38: // up
+            xAngle += 90;
+            evt.preventDefault();
+            break;
 
-    case 4: 
-      xAngle -= 90;
-      break;
-  };
+        case 39: // right
+            yAngle += 90;
+            break;
 
-  $('cube').style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
-}, false);
+        case 40: // down
+            xAngle -= 90;
+            evt.preventDefault();
+            break;
+    };
+    document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
+});
       </script>
 </body> 
  
