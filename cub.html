@@ -2,142 +2,36 @@
  
 <head> 
  <title>Un cub</title> 
- 
- <style> 
- #vizual {
-  -webkit-perspective: 800px;
-  -webkit-perspective-origin: 50% 200px;
-  -moz-perspective: 800px;
-  -moz-perspective-origin: 50% 200px;
-  perspective: 800px;
-  perspective-origin: 50% 200px;
-}
-
-#cub {
-  position: relative;
-  margin: 100px auto;
-  height: 400px;
-  width: 400px;
-  -webkit-transition: -webkit-transform 2s linear;
-  -webkit-transform-style: preserve-3d;
-  -moz-transition: -moz-transform 2s linear;
-  -moz-transform-style: preserve-3d;
-  transition: transform 2s linear;
-  transform-style: preserve-3d;
-}
-
-.fata {
-  position: absolute;
-  height: 360px;
-  width: 360px;
-  padding: 20px;
-  background-color: rgba(50, 50, 50, 0.7);
-  font-size: 27px;
-  line-height: 1em;
-  color: #fff;
-  border: 1px solid #555;
-  border-radius: 3px;
-}
-
-#cub .unu  {
-  -webkit-transform: rotateX(90deg) translateZ(200px);
-  -moz-transform: rotateX(90deg) translateZ(200px);
-  transform: rotateX(90deg) translateZ(200px);
-}
-
-#cub .doi {
-  -webkit-transform: translateZ(200px);
-  -moz-transform: translateZ(200px);
-  transform: translateZ(200px);
-}
-
-#cub .trei {
-  -webkit-transform: rotateY(90deg) translateZ(200px);
-  -moz-transform: rotateY(90deg) translateZ(200px);
-  transform: rotateY(90deg) translateZ(200px);
-}
-
-#cub .patru {
-  -webkit-transform: rotateY(180deg) translateZ(200px);
-  -moz-transform: rotateY(180deg) translateZ(200px);
-  transform: rotateY(180deg) translateZ(200px);
-}
-
-#cub .cinci {
-  -webkit-transform: rotateY(-90deg) translateZ(200px);
-  -moz-transform: rotateY(-90deg) translateZ(200px);
-  transform: rotateY(-90deg) translateZ(200px);
-}
-
-#cub .sase {
-  -webkit-transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
-  -moz-transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
-  transform: rotateX(-90deg) rotate(180deg) translateZ(200px);
-}
- </style> 
 </head> 
  
 <body> 
  
-    <div id="vizual">
-        <div id="cub">
-          <div class="fata unu">
-            Fata 1
-          </div>
-          <div class="fata doi">
-            Fata 2
-          </div>
-          <div class="fata trei">
-            Fata 3
-          </div>
-          <div class="fata patru">
-            Fata 4
-          </div>
-          <div class="fata cinci">
-            Fata 5
-          </div>
-          <div class="fata sase">
-            Fata 6
+    <div id="wrapper">
+        <div class="viewport">
+          <div class="cub">
+            <div class="side">
+              <div class="cub-img">1</div>
+            </div>
+            <div class="side">
+              <div class="cub-img">2</div>
+            </div>
+            <div class="side">
+              <div class="cub-img">3</div>
+            </div>
+            <div class="side">
+              <div class="cub-img">4</div>
+            </div>
+            <div class="side">
+              <div class="cub-img">5</div>
+            </div>
+            <div class="side">
+              <div class="cub-img active">6</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <script>
-      var props = 'transform WebkitTransform MozTransform OTransform msTransform'.split(' '),
-    prop,
-    el = document.createElement('div');
-
-for(var i = 0, l = props.length; i < l; i++) {
-    if(typeof el.style[props[i]] !== "undefined") {
-        prop = props[i];
-        break;
-    }
-}
-
-var xAngle = 0, yAngle = 0;
-$('body').keydown(function(evt) {
-    switch(evt.keyCode) {
-        case 37: // left
-            yAngle -= 90;
-            break;
-
-        case 38: // up
-            xAngle += 90;
-            evt.preventDefault();
-            break;
-
-        case 39: // right
-            yAngle += 90;
-            break;
-
-        case 40: // down
-            xAngle -= 90;
-            evt.preventDefault();
-            break;
-    };
-    document.getElementById('cube').style[prop] = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
-});
-      </script>
+     
 </body> 
  
 </html>
